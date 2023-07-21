@@ -1,6 +1,24 @@
-import { LGraph, LGraphCanvas } from "litegraph.js/build/litegraph.core.js";
+import { LGraph, LGraphCanvas, LiteGraph } from "litegraph.js/build/litegraph.core.js";
 import './node'
 import 'litegraph.js/css/litegraph.css'
+import './style.css'
+
+
+function createCanvas() {
+    const canvas = document.createElement("canvas");
+    canvas.id = "canvas";
+
+    // the following code is for high resolution displays
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+    const ctx = canvas.getContext("2d");
+    ctx.scale(dpr, dpr);
+
+    return canvas;
+}
 
 
 function component() {
@@ -8,11 +26,8 @@ function component() {
     // add 'litegraph' class to root element is required for some components of litegraph.js to work
     root.classList.add("litegraph")
 
-    const canvasElement = document.createElement("canvas");
-    canvasElement.id = "canvas";
-    canvasElement.width = window.innerWidth;
-    canvasElement.height = window.innerHeight;
-    root.appendChild(canvasElement);
+    const canvas = createCanvas();
+    root.appendChild(canvas);
 
     return root;
 }
