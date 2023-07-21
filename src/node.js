@@ -15,18 +15,18 @@ WidgetText.desc = "Shows the input value";
 
 WidgetText.prototype.onDrawForeground = function(ctx) {
     ctx.fillStyle = this.fontColor;
-    var v = this.properties["value"];
+    const value = this.properties["value"];
 
     ctx.font = this.fontSize.toString() + "px " + this.font;
     // NOTE: resize must be called after setting the font, as it uses the font size
     this.resize(ctx);
 
-    var lines = v.replace(/[\r\n]/g, "\\n").split("\\n");
+    var lines = value.split("\n");
     for (var i=0; i < lines.length; i++) {
         ctx.fillText(
             lines[i],
             15,
-            this.fontSize * -0.15 + this.fontSize * (parseInt(i) + 1)
+            this.fontSize * 0.2 + this.fontSize * (parseInt(i) + 1)
         );
     }
 };
