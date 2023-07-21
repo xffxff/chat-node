@@ -8,6 +8,7 @@
         "watch": "webpack --watch",
         "start": "webpack serve --open",
         "build": "webpack",
+        "lint": "eslint src/",
         "format": "prettier --write ."
     },
     "keywords": [],
@@ -15,6 +16,7 @@
     "license": "ISC",
     "devDependencies": {
         "css-loader": "^6.8.1",
+        "eslint": "^8.45.0",
         "html-webpack-plugin": "^5.5.3",
         "prettier": "3.0.0",
         "style-loader": "^3.3.3",
