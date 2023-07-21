@@ -13,7 +13,7 @@ function WidgetText() {
 WidgetText.title = "Text";
 WidgetText.desc = "Shows the input value";
 
-WidgetText.prototype.onDrawForeground = function(ctx) {
+WidgetText.prototype.onDrawForeground = function (ctx) {
     ctx.fillStyle = this.fontColor;
     const value = this.properties["value"];
 
@@ -22,16 +22,16 @@ WidgetText.prototype.onDrawForeground = function(ctx) {
     this.resize(ctx);
 
     const lines = value.split("\n");
-    for (let i=0; i < lines.length; i++) {
+    for (let i = 0; i < lines.length; i++) {
         ctx.fillText(
             lines[i],
             15,
-            this.fontSize * 0.2 + this.fontSize * (parseInt(i) + 1)
+            this.fontSize * 0.2 + this.fontSize * (parseInt(i) + 1),
         );
     }
 };
 
-WidgetText.prototype.resize = function(ctx) {
+WidgetText.prototype.resize = function (ctx) {
     // resize the node to fit the text
     const value = this.properties["value"];
     const lines = value.split("\n");
@@ -47,7 +47,6 @@ WidgetText.prototype.resize = function(ctx) {
 
     this.size[0] = Math.max(maxWidth + 30, 100);
     this.size[1] = this.fontSize * lines.length + 20;
-}
-
+};
 
 LiteGraph.registerNodeType("widget/text", WidgetText);

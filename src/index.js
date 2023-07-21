@@ -1,8 +1,11 @@
-import { LGraph, LGraphCanvas, LiteGraph } from "litegraph.js/build/litegraph.core.js";
-import './node'
-import 'litegraph.js/css/litegraph.css'
-import './style.css'
-
+import {
+    LGraph,
+    LGraphCanvas,
+    LiteGraph,
+} from "litegraph.js/build/litegraph.core.js";
+import "./node";
+import "litegraph.js/css/litegraph.css";
+import "./style.css";
 
 function createCanvas() {
     const canvas = document.createElement("canvas");
@@ -20,11 +23,10 @@ function createCanvas() {
     return canvas;
 }
 
-
 function component() {
     const root = document.createElement("div");
     // add 'litegraph' class to root element is required for some components of litegraph.js to work
-    root.classList.add("litegraph")
+    root.classList.add("litegraph");
 
     const canvas = createCanvas();
     root.appendChild(canvas);
@@ -37,4 +39,3 @@ document.body.appendChild(component());
 const graph = new LGraph();
 const canvas = new LGraphCanvas("#canvas", graph);
 graph.start();
-
