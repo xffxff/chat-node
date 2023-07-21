@@ -1,4 +1,5 @@
-import { LGraph, LGraphCanvas } from "litegraph.js";
+import { LGraph, LGraphCanvas } from "litegraph.js/build/litegraph.core.js";
+import './node'
 import 'litegraph.js/css/litegraph.css'
 
 
