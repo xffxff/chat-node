@@ -45,7 +45,7 @@ WidgetText.prototype.resize = function(ctx) {
         }
     }
 
-    this.size[0] = maxWidth + 30;
+    this.size[0] = Math.max(maxWidth + 30, 100);
     this.size[1] = this.fontSize * lines.length + 20;
 }
 
