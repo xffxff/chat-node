@@ -21,8 +21,8 @@ WidgetText.prototype.onDrawForeground = function(ctx) {
     // NOTE: resize must be called after setting the font, as it uses the font size
     this.resize(ctx);
 
-    var lines = value.split("\n");
-    for (var i=0; i < lines.length; i++) {
+    const lines = value.split("\n");
+    for (let i=0; i < lines.length; i++) {
         ctx.fillText(
             lines[i],
             15,
