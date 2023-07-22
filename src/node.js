@@ -1,7 +1,10 @@
 import { LiteGraph } from "litegraph.js/build/litegraph.core";
 
 function WidgetText() {
-    this.addInputs("", 0);
+    this.addInput("", 0);
+    this.addOutput("", 0);
+    this.horizontal = true;
+
     this.properties = {
         value: "...",
     };
