@@ -7,7 +7,7 @@ import "./node";
 import "litegraph.js/css/litegraph.css";
 import "./style.css";
 
-function createCanvas() {
+function createCanvas(parent) {
     const canvas = document.createElement("canvas");
     canvas.id = "canvas";
 
@@ -20,34 +20,37 @@ function createCanvas() {
     const ctx = canvas.getContext("2d");
     ctx.scale(dpr, dpr);
 
-    return canvas;
+    parent.appendChild(canvas);
 }
 
-function header() {
+function createHeader(parent) {
     const html = `
         <div class="header">
             <button class='btn'>Execute</button>
         </div>
     `
-    return html;
+    parent.innerHTML = html;
 }
 
-function component() {
-    const root = document.createElement("div");
-    // add 'litegraph' class to root element is required for some components of litegraph.js to work
-    root.classList.add("litegraph");
+const root = document.createElement("div");
+root.classList.add("litegraph");
+document.body.appendChild(root);
 
-    const headerHTML = header();
-    root.innerHTML = headerHTML;
-
-    const canvas = createCanvas();
-    root.appendChild(canvas);
-
-    return root;
-}
-
-document.body.appendChild(component());
+createHeader(root);
+createCanvas(root);
 
 const graph = new LGraph();
 const canvas = new LGraphCanvas("#canvas", graph);
+const node = LiteGraph.createNode("widget/text");
+node.pos = [600, 500];
+node.properties.value = "Hello World!";
+graph.add(node);
 graph.start();
+
+const btn = document.querySelector(".btn");
+btn.addEventListener("click", () => {
+    for (const id in canvas.selected_nodes) {
+        const node = canvas.selected_nodes[id];
+        node.doExecute();
+    }
+})

@@ -5,6 +5,13 @@ function WidgetText() {
     this.addOutput("", 0);
     this.horizontal = true;
 
+    // the default mode is `LiteGraph.ALWAYS`, I'm not sure what it does
+    // but if it's set to `LiteGraph.ALWAYS`, the method `onExecute` will be called every frame
+    // because I only want to execute the node manually, I set the mode to `LiteGraph.NEVER`
+    // the relevant code is here:
+    // https://github.com/jagenjo/litegraph.js/blob/551643839a2cb6c68a0fbccc4209303fe4f45f02/src/litegraph.js#L1012
+    this.mode = LiteGraph.NEVER;
+
     this.properties = {
         value: ""
     };
@@ -50,6 +57,10 @@ WidgetText.prototype.resize = function (ctx) {
 
     this.size[0] = Math.max(maxWidth + 30, 100);
     this.size[1] = this.fontSize * lines.length + 20;
+};
+
+WidgetText.prototype.onExecute = function () {
+    console.log("WidgetText.onExecute");
 };
 
 LiteGraph.registerNodeType("widget/text", WidgetText);
