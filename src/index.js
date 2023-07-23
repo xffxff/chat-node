@@ -26,7 +26,8 @@ function createCanvas(parent) {
 function createHeader(parent) {
     const html = `
         <div class="header">
-            <button class='btn'>Execute</button>
+            <button class='btn execute'>Execute</button>
+            <button class='btn settings'>Settings</button>
         </div>
     `
     parent.innerHTML = html;
@@ -47,10 +48,17 @@ node.properties.value = "Hello World!";
 graph.add(node);
 graph.start();
 
-const btn = document.querySelector(".btn");
+// add a event listener to the execute button
+const btn = document.querySelector(".btn.execute");
 btn.addEventListener("click", () => {
     for (const id in canvas.selected_nodes) {
         const node = canvas.selected_nodes[id];
         node.doExecute();
     }
 })
+
+// add a event listener to the settings button
+const settingsBtn = document.querySelector(".btn.settings");
+settingsBtn.addEventListener("click", () => {
+    console.log("settingsBtn clicked");
+});
