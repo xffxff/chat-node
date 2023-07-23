@@ -46,6 +46,15 @@ LGraphCanvas.prototype.showShowNodePanel = function (node) {
 
     this.canvas.parentNode.appendChild(panel);
 
+    // auto saving when closing
+    const closeBtn = panel.querySelector(".close");
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            node.properties.value = quill.getText();
+        });
+    }
+    
+    // create the quill editor
     const quill = new Quill('#editor', {
         theme: 'snow'
     });
