@@ -37,6 +37,10 @@ LGraphCanvas.prototype.showShowNodePanel = function (node) {
             </div>
             `
         );
+
+        panel.addButton("Save", () => {
+            node.properties.value = quill.getText();
+        });
     }
     inner_refresh();
 
@@ -45,4 +49,5 @@ LGraphCanvas.prototype.showShowNodePanel = function (node) {
     const quill = new Quill('#editor', {
         theme: 'snow'
     });
+    quill.setText(node.properties.value);
 };
