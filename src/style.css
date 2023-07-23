@@ -3,4 +3,28 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    background-color: #333;
+}
+
+.header {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.litegraph .btn {
+    color: #ccc;
+    font-size: 20px;
+    min-width: 30px;
+    border: 0 solid #666;
+    background-color: #3f3f3f;
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: all 1s;
+    -moz-transition: all 1s;
+    -webkit-transition: all 0.4s;
+}
+
+.litegraph .btn:hover {
+    background-color: #555;
 }

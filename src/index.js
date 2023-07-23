@@ -23,10 +23,22 @@ function createCanvas() {
     return canvas;
 }
 
+function header() {
+    const html = `
+        <div class="header">
+            <button class='btn'>Execute</button>
+        </div>
+    `
+    return html;
+}
+
 function component() {
     const root = document.createElement("div");
     // add 'litegraph' class to root element is required for some components of litegraph.js to work
     root.classList.add("litegraph");
+
+    const headerHTML = header();
+    root.innerHTML = headerHTML;
 
     const canvas = createCanvas();
     root.appendChild(canvas);
