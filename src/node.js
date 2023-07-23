@@ -6,7 +6,7 @@ function WidgetText() {
     this.horizontal = true;
 
     this.properties = {
-        value: "...",
+        value: ""
     };
     this.font = "Arial";
     this.fontSize = 18;

@@ -28,15 +28,7 @@ LGraphCanvas.prototype.showShowNodePanel = function (node) {
 
     function inner_refresh() {
         panel.content.innerHTML = ""; // clear
-        panel.addHTML(
-            `
-            <div id="editor">
-            <p>Hello World!</p>
-            <p>Some initial <strong>bold</strong> text</p>
-            <p><br></p>
-            </div>
-            `
-        );
+        panel.addHTML('<div id="editor"></div>');
 
         panel.addButton("Save", () => {
             node.properties.value = quill.getText();
