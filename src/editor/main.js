@@ -1,10 +1,8 @@
 import { LGraph, LGraphCanvas } from "litegraph.js/build/litegraph.core";
 import "litegraph.js/css/litegraph.css";
-import "./main.css"
-
+import "./main.css";
 
 class Editor {
-
     constructor() {
         const html = `
             <div class="litegraph">
@@ -27,7 +25,8 @@ class Editor {
     #resizeCanvas() {
         const canvasElement = document.querySelector("#canvas");
         const dpr = window.devicePixelRatio || 1;
-        const { width, height } = canvasElement.parentNode.getBoundingClientRect();
+        const { width, height } =
+            canvasElement.parentNode.getBoundingClientRect();
         console.log(width, height);
         canvasElement.width = width * dpr;
         canvasElement.height = height * dpr;

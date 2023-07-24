@@ -1,4 +1,4 @@
-// When you double click on a node, a panel will be shown, 
+// When you double click on a node, a panel will be shown,
 // you have the ability to modify certain settings of the node, such as the title.
 
 import { LGraphCanvas } from "litegraph.js/build/litegraph.core.js";
@@ -19,7 +19,7 @@ LGraphCanvas.prototype.showShowNodePanel = function (node) {
         onClose: () => {
             this.NODEPANEL_IS_OPEN = false;
             this.node_panel = null;
-        }
+        },
     });
     this.node_panel = panel;
     panel.id = "node-panel";
@@ -45,10 +45,10 @@ LGraphCanvas.prototype.showShowNodePanel = function (node) {
             node.properties.value = quill.getText();
         });
     }
-    
+
     // create the quill editor
-    const quill = new Quill('#editor', {
-        theme: 'snow'
+    const quill = new Quill("#editor", {
+        theme: "snow",
     });
     quill.setText(node.properties.value);
 };

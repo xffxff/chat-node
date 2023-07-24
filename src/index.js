@@ -1,5 +1,5 @@
 import Editor from "./editor/main";
-import "./style.css"
+import "./style.css";
 import "./node";
 import { LiteGraph } from "litegraph.js/build/litegraph.core";
 

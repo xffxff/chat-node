@@ -13,7 +13,7 @@ function WidgetText() {
     this.mode = LiteGraph.NEVER;
 
     this.properties = {
-        value: ""
+        value: "",
     };
     this.font = "Arial";
     this.fontSize = 18;
