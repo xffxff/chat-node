@@ -1,4 +1,6 @@
 import { LiteGraph } from "litegraph.js/build/litegraph.core";
+import * as openai from "openai"
+
 
 function WidgetText() {
     this.addInput("", 0);
@@ -60,7 +62,30 @@ WidgetText.prototype.resize = function (ctx) {
 };
 
 WidgetText.prototype.onExecute = function () {
-    console.log("WidgetText.onExecute");
+    const apiKey = localStorage.getItem("api-key");
+    if (apiKey == null) {
+        alert("Please enter your OpenAI API key in the settings menu.");
+        return;
+    }
+
+    const configuration = new openai.Configuration({
+        apiKey: apiKey,
+    });
+    const openaiClient = new openai.OpenAIApi(configuration);
+    openaiClient.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+            {
+                role: "user",
+                content: this.properties.value,
+            }
+        ]
+    }).then((response) => {
+        this.properties.value = response.data.choices[0].message.content;
+        this.setDirtyCanvas(true, true);
+    }).catch((err) => {
+        console.log(err);
+    });
 };
 
 LiteGraph.registerNodeType("widget/text", WidgetText);
