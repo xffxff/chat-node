@@ -62,6 +62,25 @@ WidgetText.prototype.resize = function (ctx) {
 };
 
 WidgetText.prototype.onExecute = function () {
+    // get all the values from ancestors
+    let parent_node = this.getInputNode(0);
+    const values = [];
+    if (this.properties.value.trim() > 0) {
+        values.push(this.properties.value);
+    }
+    while (parent_node) {
+        values.push(parent_node.properties.value);
+        parent_node = parent_node.getInputNode(0);
+    }
+    values.reverse();
+
+    const messages = values.map((value) => {
+        return {
+            role: "system",
+            content: value,
+        };
+    });
+
     const apiKey = localStorage.getItem("api-key");
     if (apiKey == null) {
         alert("Please enter your OpenAI API key in the settings menu.");
@@ -74,12 +93,7 @@ WidgetText.prototype.onExecute = function () {
     const openaiClient = new openai.OpenAIApi(configuration);
     openaiClient.createChatCompletion({
         model: "gpt-3.5-turbo",
-        messages: [
-            {
-                role: "user",
-                content: this.properties.value,
-            }
-        ]
+        messages: messages,
     }).then((response) => {
         this.properties.value = response.data.choices[0].message.content;
         this.setDirtyCanvas(true, true);
