@@ -75,6 +75,13 @@ class Editor {
         modal.innerHTML = html;
         document.body.appendChild(modal);
 
+        // if the api key is already saved, show it in the input field
+        const apiKey = localStorage.getItem("api-key");
+        if (apiKey) {
+            const apiKeyInput = document.querySelector("#api-key");
+            apiKeyInput.value = apiKey;
+        }
+
         // when the user clicks the settings button, open the modal
         const settingsBtn = document.querySelector(".btn.settings");
         settingsBtn.addEventListener("click", () => {
@@ -99,8 +106,7 @@ class Editor {
         form.addEventListener("submit", (event) => {
             event.preventDefault();
             const apiKey = document.querySelector("#api-key").value;
-            // FIXME: save the api key
-            console.log(apiKey);
+            localStorage.setItem("api-key", apiKey);
             modal.style.display = "none";
         });
     }
