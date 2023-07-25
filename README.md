@@ -2,7 +2,7 @@
 
 ## Overview
 
-ChatNode is an innovative project that allows users to visually interact with a node-based interface, where each node can be associated with a message from ChatGPT, an advanced language model developed by OpenAI. The project leverages the power of litegraph.js to create a user-friendly and interactive interface for visualizing and manipulating chat data.
+ChatNode is an innovative project that allows users to visually interact with a node-based interface, where each node can be associated with a message from ChatGPT, an advanced language model developed by OpenAI. The project leverages the power of [litegraph.js](https://github.com/jagenjo/litegraph.js.git) to create a user-friendly and interactive interface for visualizing and manipulating chat data.
 
 ## Capabilities of ChatNode
 1. **Generation of Multiple Messages from a Single Node**  
