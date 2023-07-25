@@ -9,7 +9,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Story Brancher",
+            title: "ChatNode",
         }),
     ],
     output: {
