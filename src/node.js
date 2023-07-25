@@ -65,7 +65,7 @@ WidgetText.prototype.onExecute = function () {
     // get all the values from ancestors
     let parent_node = this.getInputNode(0);
     const values = [];
-    if (this.properties.value.trim() > 0) {
+    if (this.properties.value.trim().length > 0) {
         values.push(this.properties.value);
     }
     while (parent_node) {
