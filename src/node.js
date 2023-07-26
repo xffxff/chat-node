@@ -65,14 +65,12 @@ WidgetText.prototype.onExecute = function () {
     // get all the values from ancestors
     let parent_node = this.getInputNode(0);
     const values = [];
-    if (this.properties.value.trim().length > 0) {
-        values.push(this.properties.value);
-    }
     while (parent_node) {
         values.push(parent_node.properties.value);
         parent_node = parent_node.getInputNode(0);
     }
     values.reverse();
+    // NOTE: values does not include the current node's value
 
     const messages = values.map((value) => {
         return {
