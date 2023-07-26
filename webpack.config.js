@@ -5,6 +5,7 @@ module.exports = {
     mode: "development",
     entry: {
         panel: "./src/panel.js",
+        default: "./src/default.js",
         index: "./src/index.js",
     },
     plugins: [
