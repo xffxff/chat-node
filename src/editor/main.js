@@ -46,6 +46,11 @@ class Editor {
 
         const executeBtn = document.querySelector(".btn.execute");
         executeBtn.addEventListener("click", () => {
+            if (Object.keys(this.canvas.selected_nodes).length === 0) {
+                const alertString = "You must select at least one node to execute."
+                alert(alertString);
+                return;
+            }
             for (const id in this.canvas.selected_nodes) {
                 const node = this.canvas.selected_nodes[id];
                 node.doExecute();
