@@ -110,6 +110,7 @@ WidgetText.prototype.onExecute = function () {
         apiKey: apiKey,
     });
     const openaiClient = new openai.OpenAIApi(configuration);
+    this.title = "Text (generating...)"
     openaiClient.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: messages,
@@ -118,6 +119,8 @@ WidgetText.prototype.onExecute = function () {
         this.setDirtyCanvas(true, true);
     }).catch((err) => {
         console.log(err);
+    }).finally(() => {
+        this.title = "Text";
     });
 };
 
