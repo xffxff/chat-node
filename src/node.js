@@ -1,5 +1,6 @@
 import { LiteGraph } from "litegraph.js/build/litegraph.core";
 import * as openai from "openai"
+import * as dedent from "dedent-js"
 
 
 function WidgetText() {
@@ -92,6 +93,16 @@ WidgetText.prototype.onExecute = function () {
     }
     values.reverse();
     // NOTE: values does not include the current node's value
+
+    if (values.length == 0) {
+        const alertString = `
+        The text node only utilizes its ancestors' content as messages to chat with ChatGPT and does not include its own content.
+
+        Please make sure to add at least one node as input
+        `;
+        alert(dedent(alertString));
+        return;
+    }
 
     const messages = values.map((value) => {
         return {
