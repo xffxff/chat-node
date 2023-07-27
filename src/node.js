@@ -20,6 +20,7 @@ function WidgetText() {
     this.font = "Arial";
     this.fontSize = 18;
     this.fontColor = "#AAA";
+    this.maxWidth = 400;
 }
 
 WidgetText.title = "Text";
@@ -31,9 +32,9 @@ WidgetText.prototype.onDrawForeground = function (ctx) {
 
     ctx.font = this.fontSize.toString() + "px " + this.font;
     // NOTE: resize must be called after setting the font, as it uses the font size
-    this.resize(ctx);
 
-    const lines = value.split("\n");
+    const lines = this.text2lines(ctx, value, this.maxWidth);
+    this.resize(ctx, lines);
     for (let i = 0; i < lines.length; i++) {
         ctx.fillText(
             lines[i],
@@ -43,11 +44,31 @@ WidgetText.prototype.onDrawForeground = function (ctx) {
     }
 };
 
-WidgetText.prototype.resize = function (ctx) {
-    // resize the node to fit the text
-    const value = this.properties["value"];
-    const lines = value.split("\n");
+// convert a string to an array of lines based on the max width
+// if a line is too long, it will be split into multiple lines
+WidgetText.prototype.text2lines = function (ctx, text, maxWidth) {
+    const lines = text.split("\n");
+    const result = [];
+    for (let i = 0; i < lines.length; ++i) {
+        const words = lines[i].split(" ");
+        let line = "";
+        for (let j = 0; j < words.length; ++j) {
+            const testLine = line + words[j] + " ";
+            const metrics = ctx.measureText(testLine);
+            const testWidth = metrics.width;
+            if (testWidth > maxWidth && j > 0) {
+                result.push(line);
+                line = words[j] + " ";
+            } else {
+                line = testLine;
+            }
+        }
+        result.push(line);
+    }
+    return result;
+}
 
+WidgetText.prototype.resize = function (ctx, lines) {
     // measure the max width of the lines
     let maxWidth = 0;
     for (const line of lines) {
