@@ -22,6 +22,7 @@ function WidgetText() {
     this.fontSize = 18;
     this.fontColor = "#AAA";
     this.maxWidth = 400;
+    this.minWidth = 150;
 }
 
 WidgetText.title = "Text";
@@ -86,7 +87,7 @@ WidgetText.prototype.resize = function (ctx, lines) {
         }
     }
 
-    this.size[0] = Math.max(maxWidth + 30, 100);
+    this.size[0] = Math.max(this.minWidth, maxWidth + 30);
     this.size[1] = this.fontSize * lines.length + 20;
 };
 
