@@ -135,4 +135,16 @@ WidgetText.prototype.onExecute = function () {
     });
 };
 
+// add a clear option to the context menu to clear the text
+// the relevant litegraph code is here:
+// https://github.com/jagenjo/litegraph.js/blob/551643839a2cb6c68a0fbccc4209303fe4f45f02/src/litegraph.js#L13157-L13163
+WidgetText.prototype.getExtraMenuOptions = function (lgraphCanvas, options) {
+    return [{
+        content: "Clear",
+        callback: () => {
+            this.properties.value = "";
+        }
+    }]
+}
+
 LiteGraph.registerNodeType("widget/text", WidgetText);
