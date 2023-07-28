@@ -28,6 +28,13 @@ WidgetText.title = "Text";
 WidgetText.desc = "Shows the input value";
 
 WidgetText.prototype.onDrawForeground = function (ctx) {
+    // flags.collapsed is set or unset in LiteGraphNode.prototype.collapse
+    // https://github.com/jagenjo/litegraph.js/blob/551643839a2cb6c68a0fbccc4209303fe4f45f02/src/litegraph.js#L4831-L4842
+    // if the node is collapsed, don't draw the text
+    if (this.flags.collapsed) {
+        return;
+    }
+
     ctx.fillStyle = this.fontColor;
     const value = this.properties["value"];
 
