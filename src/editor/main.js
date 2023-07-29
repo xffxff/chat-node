@@ -4,11 +4,13 @@ import "./main.css";
 
 class Editor {
     constructor() {
+        // NOTE: setting tabindex to 1 allows canvas focusable
+        // https://stackoverflow.com/a/12887221
         const html = `
             <div class="litegraph">
                 <div class="header"></div>
                 <div class="content">
-                    <canvas id="canvas"></canvas>
+                    <canvas id="canvas" tabindex=1></canvas>
                 </div>
             </div>
             <div></div>
